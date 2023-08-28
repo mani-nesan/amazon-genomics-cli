@@ -6,7 +6,7 @@ set -x
 OS=$(uname -r)
 export OS
 BASEDIR=$(dirname "$0")
-INITIAL_EBS_SIZE="${1:-200}"
+INITIAL_EBS_SIZE="${1:-100}"
 
 echo OS = "$OS"
 echo BASEDIR = "$BASEDIR"
@@ -98,7 +98,7 @@ echo "ARTIFACT_S3_ROOT_URL = $ARTIFACT_S3_ROOT_URL"
 
 
 # retrieve and install amazon-ebs-autoscale
-if [ "$WORKFLOW_ORCHESTRATOR" != "miniwdl" ] && [ "$WORKFLOW_ORCHESTRATOR" != "snakemake" ]; then
+if [ "$WORKFLOW_ORCHESTRATOR" != "snakemake" ]; then
   echo "obtaining amazon-ebs-autoscale artifacts"
   cd /opt
   sh "$BASEDIR"/get-amazon-ebs-autoscale.sh \
